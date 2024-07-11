@@ -55,7 +55,8 @@ const userSchema = new Schema({
 
 userSchema.pre("save", async function (next) {
     if(!this.isModified("password")) return next();
-    this.password = bcrypt.hash(this.password,10)  // it will encryt the password 
+
+    this.password = await bcrypt.hash(this.password,10)  // it will encryt the password 
     next()                                         // when we send the password feild then 
 })
 //use methods to check password 
